@@ -92,6 +92,9 @@ class _MyAppState extends State<MyApp> {
         BlocProvider(
           create: (context) => BlocAllDevices(),
         ),
+         BlocProvider(
+          create: (context) => ProfileBloc(),
+        ),
       ],
       child: OverlaySupport(
         child: MaterialApp(

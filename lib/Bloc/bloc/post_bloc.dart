@@ -14,7 +14,8 @@ class PostBloc extends Bloc<PostEvent, PostStates> {
       emit(state.copyWith(postStatus: PostStatus.success, postList: value));
     }).onError((error, stackTrace) {
       emit(state.copyWith(
-          postStatus: PostStatus.Failure, message: error.toString()));
+        postStatus: PostStatus.Failure,
+      ));
     });
   }
 }
@@ -33,6 +34,7 @@ class BlocDevices extends Bloc<DevicesEvent, DevicesState> {
     });
   }
 }
+
 class BlocAllDevices extends Bloc<AllDevicesListEvent, AllDevicesState> {
   AllDevicesRepository allDevicesRepository = AllDevicesRepository();
 
@@ -40,11 +42,13 @@ class BlocAllDevices extends Bloc<AllDevicesListEvent, AllDevicesState> {
     on<FetchAllDevices>(fetchAllDevicesApi);
   }
 
-    // Stream<AllDevicesState> get allDevicesStream => stream;
+  // Stream<AllDevicesState> get allDevicesStream => stream;
 
   void fetchAllDevicesApi(
       FetchAllDevices event, Emitter<AllDevicesState> emit) async {
-    await allDevicesRepository.fetchFocusedDevices(event.hospital).then((value) {
+    await allDevicesRepository
+        .fetchFocusedDevices(event.hospital)
+        .then((value) {
       emit(
           state.copyWith(postStatus: PostStatus.success, alldeviceList: value));
     }).onError((error, stackTrace) {
@@ -54,3 +58,30 @@ class BlocAllDevices extends Bloc<AllDevicesListEvent, AllDevicesState> {
   }
 }
 
+class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
+  ProfileRepository profileRepository = ProfileRepository();
+  ProfileBloc() : super(const ProfileState()) {
+    on<FetchProfile>(fetchProfileApi);
+  }
+  void fetchProfileApi(FetchProfile event, Emitter<ProfileState> emit) async {
+    await profileRepository.fetchProfile().then((value) {
+      emit(state.copyWith(postStatus: PostStatus.success, profileList: value));
+    }).onError((error, stackTrace) {
+      emit(state.copyWith(
+        postStatus: PostStatus.Failure,
+      ));
+    });
+  }
+}
+
+class PatientListBloc extends Bloc<PatientListEvent, PatientListState> {
+  PatientListBloc() : super(const PatientListState()) {
+    on<ChangeTab>(_changeTabs);
+  }
+  Future<void> _changeTabs(
+    ChangeTab event,
+    Emitter<PatientListState> emit,
+  ) async {
+    emit(state.changeTab());
+  }
+}

@@ -114,9 +114,7 @@ class _DoctorDeviceListState extends State<DoctorDeviceList> {
                 builder: (context, state) {
                   switch (state.postStatus) {
                     case PostStatus.loading:
-                      return SizedBox(
-                          height: 1,
-                          child: LinearProgressIndicator(color: Colors.pink));
+                      return Center(child: Text('Loading...'));
 
                     case PostStatus.Failure:
                       return SizedBox(
@@ -126,7 +124,7 @@ class _DoctorDeviceListState extends State<DoctorDeviceList> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              'No Focused Devices Found',
+                              'No Devices Found',
                               style: TextStyle(
                                 fontFamily: 'Avenir',
                                 color: Color.fromARGB(255, 39, 14, 14),
@@ -135,16 +133,7 @@ class _DoctorDeviceListState extends State<DoctorDeviceList> {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            Text(
-                              'Please Add Device to Focus',
-                              style: TextStyle(
-                                fontFamily: 'Avenir',
-                                color: Color.fromARGB(255, 218, 218, 218),
-                                fontSize:
-                                    MediaQuery.of(context).size.width * 0.04,
-                                fontWeight: FontWeight.w100,
-                              ),
-                            ),
+                         
                           ],
                         ),
                       );

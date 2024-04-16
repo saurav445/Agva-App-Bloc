@@ -315,18 +315,16 @@
 //screen using bloc implementation
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:convert';
 import 'package:agva_app/Bloc/bloc/post_bloc.dart';
 import 'package:agva_app/Bloc/bloc/post_event.dart';
 import 'package:agva_app/Bloc/bloc/post_state.dart';
 import 'package:agva_app/Bloc/enums.dart';
-import 'package:agva_app/config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'DoctorDeviceList.dart';
-import 'package:http/http.dart' as http;
+
 
 class DoctorHospitals extends StatefulWidget {
   DoctorHospitals();
@@ -462,7 +460,7 @@ class _DoctorHospitalsState extends State<DoctorHospitals> {
                                           child: Row(
                                             children: [
                                               Text(
-                                           hospitaladdress,
+                                                hospitaladdress,
                                                 style: TextStyle(
                                                   fontFamily: 'Avenir',
                                                   color: Color.fromARGB(
@@ -480,19 +478,7 @@ class _DoctorHospitalsState extends State<DoctorHospitals> {
                                                         .width *
                                                     0.01,
                                               ),
-                                              Text(
-                                                pincode,
-                                                style: TextStyle(
-                                                  fontFamily: 'Avenir',
-                                                  color: Color.fromARGB(
-                                                      255, 218, 218, 218),
-                                                  fontSize:
-                                                      MediaQuery.of(context)
-                                                              .size
-                                                              .width *
-                                                          0.03,
-                                                ),
-                                              ),
+                                      
                                             ],
                                           ),
                                         ),
@@ -510,6 +496,7 @@ class _DoctorHospitalsState extends State<DoctorHospitals> {
                                     ),
                                   ),
                                 ],
+                                
                               ),
                             ),
                           ),
@@ -526,7 +513,7 @@ class _DoctorHospitalsState extends State<DoctorHospitals> {
                                         MaterialPageRoute(
                                           builder: (context) =>
                                               DoctorDeviceList(
-                                             hospital,    hospitaladdress ),
+                                                  hospital, hospitaladdress),
                                         ),
                                       );
                                     },
